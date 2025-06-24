@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -13,18 +13,22 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.reactiveForm=new FormGroup({
-      firstname:new FormControl(null),
-      lastname:new FormControl(null),
-      email:new FormControl(null),
+      firstname:new FormControl(null,Validators.required),
+      lastname:new FormControl(null,Validators.required),
+      email:new FormControl(null,[Validators.required,Validators.email],),
       username:new FormControl(null),
-      gender:new FormControl(null),
+      gender:new FormControl('male'),
       dob:new FormControl(null),
       street:new FormControl(null),
-      country:new FormControl(null),
+      country:new FormControl('India'),
       city:new FormControl(null),
       region:new FormControl(null),
       postal:new FormControl(null),
 
     })
+  }
+
+  onFormSubmitted(){
+    console.log(this.reactiveForm);
   }
 }
