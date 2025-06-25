@@ -33,6 +33,13 @@ export class AppComponent implements OnInit {
        
       ])
     })
+    this.reactiveForm.get('firstname')?.valueChanges.subscribe((value)=>{
+      console.log(value) //we will get the value of what we type in the text box as we type
+    }) //on control
+
+    // this.reactiveForm.valueChanges.subscribe((value)=>{
+    //   console.log(value)
+    // }) On entire form
   }
 
   onFormSubmitted(){
