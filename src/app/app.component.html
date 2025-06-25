@@ -21,10 +21,17 @@
         <input type="text" placeholder="Last Name" formControlName="lastname" />
         <small
           *ngIf="
-            reactiveForm.get('lastname').invalid &&
+            reactiveForm.get('lastname').errors?.['invalid'] &&
             reactiveForm.get('lastname').touched
           "
           >*Last Name is required field</small
+        >
+        <small
+          *ngIf="
+            reactiveForm.get('lastname').errors?.['noSpaceAllowed'] &&
+            reactiveForm.get('lastname').touched
+          "
+          >*Space is not allowed</small
         >
       </div>
     </div>
@@ -199,9 +206,10 @@
       type="submit"
       value="Submit"
       class="submit-btn"
-      [disabled]="!reactiveForm.valid"
     />
   </form>
+        <!-- [disabled]="!reactiveForm.valid" -->
+
 </section>
 
 <!--uncomment below HTML for displaying form data-->
