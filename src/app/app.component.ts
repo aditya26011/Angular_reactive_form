@@ -40,6 +40,10 @@ export class AppComponent implements OnInit {
     // this.reactiveForm.valueChanges.subscribe((value)=>{
     //   console.log(value)
     // }) On entire form
+
+    this.reactiveForm.get('username').statusChanges.subscribe((status)=>{
+      console.log(status);
+    })
   }
 
   onFormSubmitted(){
