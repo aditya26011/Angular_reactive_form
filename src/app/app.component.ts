@@ -28,13 +28,23 @@ export class AppComponent implements OnInit {
       }),
       skills:new FormArray([
        new FormControl(null,Validators.required),
-       new FormControl(null,Validators.required),
-       new FormControl(null,Validators.required),
+      
       ])
     })
   }
 
   onFormSubmitted(){
     console.log(this.reactiveForm);
+  }
+
+  addSkill(){
+    //We need to specify FormArray specifically bcs it has push method 
+   ( <FormArray>this.reactiveForm.get('skills')).push(new FormControl(null,Validators.required))
+  }
+
+  deleteSkill(idx:number){
+    const controls=(<FormArray>this.reactiveForm.get('skills'));
+
+    controls.removeAt(idx);
   }
 }
