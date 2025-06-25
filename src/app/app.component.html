@@ -91,13 +91,13 @@
         placeholder="Street address"
         formControlName="street"
       />
-        <small
-          *ngIf="
-            reactiveForm.get('address.street').invalid &&
-            reactiveForm.get('address.street').touched
-          "
-          >*street is required field</small
-        >
+      <small
+        *ngIf="
+          reactiveForm.get('address.street').invalid &&
+          reactiveForm.get('address.street').touched
+        "
+        >*street is required field</small
+      >
       <div class="column">
         <div class="select-box">
           <select name="country" formControlName="country">
@@ -107,16 +107,16 @@
             <option>India</option>
             <option>Nepal</option>
           </select>
-           <small
-          *ngIf="
-            reactiveForm.get('address.country').invalid &&
-            reactiveForm.get('address.country').touched
-          "
-          >*Country is required field</small
-        >
+          <small
+            *ngIf="
+              reactiveForm.get('address.country').invalid &&
+              reactiveForm.get('address.country').touched
+            "
+            >*Country is required field</small
+          >
         </div>
         <input type="text" placeholder="City" formControlName="city" />
-         <small
+        <small
           *ngIf="
             reactiveForm.get('address.city').invalid &&
             reactiveForm.get('address.city').touched
@@ -131,7 +131,7 @@
           placeholder="Postal code"
           formControlName="postal"
         />
-         <small
+        <small
           *ngIf="
             reactiveForm.get('address.postal').invalid &&
             reactiveForm.get('address.postal').touched
@@ -141,28 +141,42 @@
       </div>
     </div>
     <!-- [disabled]="!reactiveForm.valid" -->
-    
+
     <!-- HTML for Skills Form Array -->
     <div class="input-box skills" formArrayName="skills">
       <h4>Add Skills</h4>
-      <div class="column"   
-      *ngFor="let control of reactiveForm.get('skills')['controls']; let i=index">
-        <input type="text"
-        [formControlName]="i" 
-        placeholder="Add Skill...">
-        <button type="button" class="btn-add-delete"(click)="deleteSkill(i)">Delete</button>
-      </div> 
+      <div
+        class="column"
+        *ngFor="
+          let control of reactiveForm.get('skills')['controls'];
+          let i = index
+        "
+      >
+        <input type="text" [formControlName]="i" placeholder="Add Skill..." />
+        <button type="button" class="btn-add-delete" (click)="deleteSkill(i)">
+          Delete
+        </button>
+      </div>
     </div>
-    <button type="button" class="btn-add-delete" (click)="addSkill()">Add Skills</button> 
-    
+    <button type="button" class="btn-add-delete" (click)="addSkill()">
+      Add Skills
+    </button>
+
     <!--HTML for Experience Form Array -->
-    <!-- <div class="input-box">
-      <div class="experience">
-        <label>Experience</label>
-        <input type="text" placeholder="Company Name" />
+    <div class="input-box " formArrayName="experience">
+      <div
+      class="experience"
+        *ngFor="
+          let exp of reactiveForm.get('experience')['controls'];
+          let i = index
+        "
+        [formGroupName]="i"
+      >
+        <label>Experience {{i+1}}</label>
+        <input type="text" placeholder="Company Name" formControlName="company"/>
         <div class="column">
-          <div class="select-box">
-            <select>
+          <div class="select-box" >
+            <select  formControlName="position">
               <option hidden>Position</option>
               <option>Junior Developer</option>
               <option>Software Developer</option>
@@ -170,23 +184,25 @@
               <option>Team Lead</option>
             </select>
           </div>
-          <input type="number" placeholder="Experience" />
+          <input type="number" placeholder="Experience"  formControlName="totalExp"/>
+          <div class="column">
+            <input type="date" placeholder="Start Date"  formControlName="startDate"/>
+            <input type="date" placeholder="End Date"  formControlName="endDate" />
+          </div>
         </div>
-        <div class="column">
-          <input type="date" placeholder="Start Date" />
-          <input type="date" placeholder="End Date" />
-        </div>
-        <button type="button" class="btn-add-delete">Delete Experience</button>
+        <button type="button" class="btn-add-delete" (click)="deleteExp(i)">Delete Experience</button>
       </div>
     </div>
-    <button type="button" class="btn-add-delete">Add Experience</button>
-    
-    <input type="submit" value="Submit" class="submit-btn"> 
-    [disabled]="!reactiveForm.valid" -->
-    <input type="submit" value="Submit" class="submit-btn" [disabled]="!reactiveForm.valid"/>
+    <button type="button" class="btn-add-delete"(click)="addExperience()">Add Experience</button>
+
+    <input
+      type="submit"
+      value="Submit"
+      class="submit-btn"
+      [disabled]="!reactiveForm.valid"
+    />
   </form>
 </section>
-
 
 <!--uncomment below HTML for displaying form data-->
 
