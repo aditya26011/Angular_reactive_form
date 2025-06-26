@@ -78,4 +78,58 @@ export class AppComponent implements OnInit {
     const grps=(<FormArray>this.reactiveForm.get('experience') );
     grps.removeAt(idx);
    }   
+
+   generateUsername(){
+     let username = '';
+    const fName: string= this.reactiveForm.get('firstname').value;
+    const lName: string= this.reactiveForm.get('lastname').value;
+    const dob: string= this.reactiveForm.get('dob').value;
+
+    if(fName.length >= 3){
+      username += fName.slice(0, 3);
+    }
+    else {
+      username += fName;
+    }
+
+    if(lName.length >= 3){
+      username += lName.slice(0, 3);
+    }
+    else {
+      username += lName;
+    }
+
+    let datetime = new Date(dob);
+    username += datetime.getFullYear();
+
+    username = username.toLowerCase();
+
+       this.reactiveForm.setValue({
+      firstname: this.reactiveForm.get('firstname').value,
+      lastname: this.reactiveForm.get('lastname').value,
+      email: this.reactiveForm.get('email').value,
+      username: username,
+      dob: this.reactiveForm.get('dob').value,
+      gender: this.reactiveForm.get('gender').value,
+      address: {
+        street: this.reactiveForm.get('address.street').value,
+        country: this.reactiveForm.get('address.country').value,
+        city: this.reactiveForm.get('address.city').value,
+        region: this.reactiveForm.get('address.region').value,
+        postal: this.reactiveForm.get('address.postal').value
+      },
+      skills: this.reactiveForm.get('skills').value,
+      experience: this.reactiveForm.get('experience').value
+    })
+
+    //this.reactiveForm.get('username').setValue(username); set value on FormControl direct use
+
+
+    this.reactiveForm.patchValue({
+      username: username,
+      address: {
+        city: 'New Delhi'
+      }
+    })
+   }
 }
