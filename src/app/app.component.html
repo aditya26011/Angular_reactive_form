@@ -219,25 +219,25 @@
 
 <!--uncomment below HTML for displaying form data-->
 
-<!-- <section class="user-detail-container">
+<section class="user-detail-container">
   <div class="user-details-container">
     <div class="user-avatar">
       <p>JS</p>
     </div>
     <div class="user-details">
       <div class="user-name">
-        <h2>John Smith</h2>
+        <h2>{{formdata?.firstname}} {{formdata?.lastname}}</h2>
       </div>
-      <p><b>Email:</b> johnsmith@gmail.com</p>
-      <p><b>Username:</b> johnsmith86 </p>
-      <p><b>Date of birth:</b> July 21, 1989</p>
+      <p><b>Email:</b> {{formdata?.email}}</p>
+      <p><b>Username:</b> {{formdata?.username}} </p>
+      <p><b>Date of birth:</b> {{formdata?.dob}}</p>
       <div class="user-name">
         <h3>Address</h3>
       </div>
-      <span>India</span>.
-      <span> New Delhi</span>.
-      <span> NCR</span>.
-      <span> 234565</span>
+      <span>{{formdata.address?.country}}</span>.
+      <span> {{formdata.address?.city}}</span>.
+      <span> {{formdata.address?.region}}</span>.
+      <span> {{formdata.address?.postal}}</span>
     </div>
   </div>
-</section> -->
+</section> 
